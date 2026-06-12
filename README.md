@@ -26,32 +26,3 @@ Color Planet transforms the flat, traditional color wheel into a fully interacti
 * **Styling:** Tailwind CSS v4
 * **Iconography:** Lucide-React
 
----
-
-## 🚀 Getting Started
-
-### 1. Installation
-
-Install all node dependencies:
-```bash
-npm install
-```
-
-### 2. Run Locally (Development)
-
-Start the Vite development server:
-```bash
-npm run dev
-```
-Open `http://localhost:3000` to interact with the Color Planet.
-
-### 3. Production Build
-
-Build and bundle static assets for optimal production rendering:
-```bash
-npm run build
-```
-Validate compiled resources with:
-```bash
-npm run preview
-```
