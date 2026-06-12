@@ -1,0 +1,6 @@
+{
+  "name": "Esfera Cromática 3D",
+  "description": "Visualización interactiva en 3D de una esfera de colores basada en HSL, con transiciones tonales del núcleo oscuro a la atmósfera externa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
