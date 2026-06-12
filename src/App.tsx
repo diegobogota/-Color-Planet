@@ -7,7 +7,7 @@ import PaletteManager from './components/PaletteManager';
 import { hslToRgb, rgbToHex } from './colorUtils';
 import { translations } from './translations';
 import { 
-  Compass, 
+  Globe,
   Sliders, 
   Heart, 
   X, 
@@ -15,7 +15,8 @@ import {
   Sparkles, 
   ArrowRight,
   Info,
-  RotateCcw
+  RotateCcw,
+  RotateCw
 } from 'lucide-react';
 
 export default function App() {
@@ -136,16 +137,13 @@ export default function App() {
           {/* Logo Name & Diego Bogotá Credit link */}
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center shadow-lg shadow-emerald-500/5">
-              <Compass className="w-5 h-5 text-emerald-400 animate-pulse" />
+              <Globe className="w-5 h-5 text-emerald-400 animate-pulse" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-sm font-extrabold text-white tracking-wider uppercase font-mono">
                   {t.title}
                 </h1>
-                <span className="text-[8px] font-mono bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-bold uppercase tracking-widest">
-                  CINEMATIC v3.0
-                </span>
               </div>
               <p className="text-[11px] text-zinc-500 mt-0.5">
                 {lang === 'es' ? (
@@ -217,6 +215,50 @@ export default function App() {
                 {palette.length}
               </span>
             )}
+          </button>
+        </div>
+
+        {/* Floating Quick Planet Controllers on the Bottom Right */}
+        <div className="absolute bottom-10 right-6 sm:right-10 flex items-center gap-2.5 pointer-events-auto z-30">
+          {/* Subtle Auto-Rotation Toggle Button */}
+          <button
+            onClick={() => setViewState(prev => ({ ...prev, autoRotate: !prev.autoRotate }))}
+            className={`w-11 h-11 rounded-full flex items-center justify-center border transition-all cursor-pointer shadow-lg backdrop-blur-md ${
+              viewState.autoRotate
+                ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40 hover:bg-emerald-500/30'
+                : 'bg-zinc-950/90 text-zinc-400 border-zinc-800 hover:text-white hover:bg-zinc-900'
+            }`}
+            title={lang === 'es' ? 'Giro automático sutil' : 'Subtle auto-rotation'}
+            aria-label="Toggle auto-rotate"
+            id="btn-quick-auto-rotate"
+          >
+            <RotateCw className={`w-4 h-4 ${viewState.autoRotate ? 'animate-spin' : ''}`} style={{ animationDuration: '10s' }} />
+          </button>
+
+          {/* Quick Planet Parameters and Angle Reset Button */}
+          <button
+            onClick={() => {
+              setViewState({
+                rx: -Math.PI / 9,
+                ry: Math.PI / 5,
+                zoom: 1.0,
+                autoRotate: true,
+                sliceMode: 'full',
+                viewMode: 'hybrid',
+                layerFilter: null,
+                hueFilter: null,
+                saturationDecay: true,
+                saturationBase: 100,
+                atmosphereOpacity: 35
+              });
+              setHueDensity(24);
+            }}
+            className="w-11 h-11 rounded-full bg-zinc-950/90 text-zinc-400 border border-zinc-800 hover:text-white hover:bg-zinc-900 flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-md"
+            title={lang === 'es' ? 'Restablecer órbita y parámetros' : 'Reset orbit and parameters'}
+            aria-label="Reset planet coordinates"
+            id="btn-quick-reset-view"
+          >
+            <RotateCcw className="w-4 h-4" />
           </button>
         </div>
 
